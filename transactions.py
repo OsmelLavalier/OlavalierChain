@@ -9,7 +9,7 @@ class Transactions:
         self.amount = amount
 
     def get_pair(self):
-        pub, priv = Keys.key_pair()
+        pub, priv = keys.key_pair()
         self.sender = pub
         self.reciever = pub
 
