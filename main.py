@@ -1,5 +1,6 @@
 from chain.chain import Chain
 
+#TODO: fix tests and add test function to check if proof is null or not.
 
 if __name__ == '__main__':
     chain = Chain()
