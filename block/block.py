@@ -10,6 +10,7 @@ class Block:
         self.index = index
         self.previous_hash = previous_hash
         self.nonce = nonce
+        self.proof = None
         self.hash = self.__hash__()
 
     def __hash__(self):

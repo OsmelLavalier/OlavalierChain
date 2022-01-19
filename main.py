@@ -4,10 +4,8 @@ from chain.chain import Chain
 if __name__ == '__main__':
     chain = Chain()
 
-    head = chain.last()
-    proof = chain.proof_of_work(head)
+    for _ in range(5):
+        chain.mine()
 
-    chain.add_block(head, proof)
-
-    for block in chain.block_chain:
-        print(block)
+    for b in chain.block_chain:
+        print(b)
