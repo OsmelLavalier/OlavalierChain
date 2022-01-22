@@ -1,12 +1,12 @@
 from chain.chain import Chain
+from client.lib import keys
+
+# TODO: fix tests
+
 
 if __name__ == '__main__':
     chain = Chain()
-
-    head = chain.last()
-    proof = chain.proof_of_work(head)
-
-    chain.add_block(head, proof)
-
-    for block in chain.block_chain:
-        print(block)
+    for _ in range(5):
+        chain.mine()
+    for b in chain.block_chain:
+        print(b)
