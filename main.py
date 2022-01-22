@@ -4,7 +4,7 @@ from chain.chain import Chain
 
 if __name__ == '__main__':
     chain = Chain()
-
+    #Yes
     for _ in range(5):
         chain.mine()
 
