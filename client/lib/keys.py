@@ -16,6 +16,7 @@ def generate_key_pair():
 
 def get_keys_as_pem(pubkey: rsa.key.PublicKey, privkey: rsa.key.PrivateKey):
     """Get public/private key pair in PEM format"""
+
     return pubkey.save_pkcs1('PEM'), privkey.save_pkcs1('PEM')
 
 

@@ -17,5 +17,5 @@ if __name__ == '__main__':
         rsa.verify(message=secret, signature=signature, pub_key=pubkey)
         print("Signature successfully verified")
     except rsa.verify:
-        print('')
+        print('Signature not verified')
 

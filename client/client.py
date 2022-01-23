@@ -6,7 +6,7 @@ from .lib import keys
 
 
 # TODO: implement functions that we are passing
-
+# TODO: eventually move some of this functionality to transactions.py
 
 class Client:
     """Client in blockchain which represents a sender or reciever"""
