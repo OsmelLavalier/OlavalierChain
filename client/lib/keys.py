@@ -1,4 +1,3 @@
-import os
 import rsa
 
 from cryptography.fernet import Fernet
@@ -20,27 +19,32 @@ def get_keys_as_pem(pubkey: rsa.key.PublicKey, privkey: rsa.key.PrivateKey):
     return pubkey.save_pkcs1('PEM'), privkey.save_pkcs1('PEM')
 
 
-def get_encrypt_data(secret: bytes):
-    """Generate a random key and encrypt data from client"""
+def get_encrypt_data(secret: bytes, public_pem: bytes):
+    """Generate a random key and encrypt data and public from client"""
 
-    symmetric_key = Fernet.generate_key()  # Generating a random key
+    symmetric_key = Fernet.generate_key()  # Generating a random bytes key
     cipher = Fernet(symmetric_key)  # create the cipher
 
     # Encrypt data
     secret_encrypted = cipher.encrypt(secret)
-    return secret_encrypted
+
+    # Encrypt the symmetric key with clients public key
+    pubkey = rsa.PublicKey.load_pkcs1(public_pem)
+    encrypted_public_key = rsa.encrypt(message=symmetric_key, pub_key=pubkey)
+    return secret_encrypted, encrypted_public_key
 
 
-def get_decrypted_data(secret: bytes):
+def get_decrypted_data(secret: bytes, encrypted_public_key: bytes, private_pem: bytes):
     """Decrypt client data and return it"""
-    pass
 
+    # Load PEM
+    private_key = rsa.PrivateKey.load_pkcs1(private_pem)
 
-def save_keys(pubkey: rsa.key.PublicKey, privkey: rsa.key.PrivateKey, pubkeyname: str, privkeyname: str):
-    """Save key pair locally"""
+    # Decrypt the encrypted key with private key
+    decrypted_public_key = rsa.decrypt(crypto=encrypted_public_key, priv_key=private_key)
+    cipher = Fernet(decrypted_public_key)
 
-    with open(os.path.join(os.path.dirname(__file__), pubkeyname), mode='wb') as pub_file:
-        pub_file.write(pubkey.save_pkcs1('PEM'))
+    # Decrypt the secret
+    decrypted_data = cipher.decrypt(secret)
 
-    with open(os.path.join(os.path.dirname(__file__), privkeyname), mode='wb') as priv_file:
-        priv_file.write(privkey.save_pkcs1('PEM'))
+    return decrypted_data.decode('utf-8')
