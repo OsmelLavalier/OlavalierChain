@@ -1,6 +1,6 @@
 from time import time
-from block.block import Block
-from error.error import BlockNotValid
+from block import Block
+from error import BlockNotValid
 
 
 class Chain:
