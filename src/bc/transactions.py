@@ -1,7 +1,7 @@
 import hashlib
 import json
 
-from src.block_chain.client.client import Client
+from .client import Client
 
 
 class Transactions:

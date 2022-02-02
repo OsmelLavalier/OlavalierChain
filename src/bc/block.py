@@ -3,6 +3,7 @@ import json
 
 # TODO: Eventually add transaction to __init__
 
+
 class Block:
     """Represents a block structure in the blockchain"""
     def __init__(self, timestamp, index, previous_hash, nonce=0):

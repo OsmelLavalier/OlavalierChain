@@ -1,5 +1,5 @@
 from time import time
-from src.block_chain.tests.block import Block
+from src.bc.tests.block import Block
 
 """All instances of Chain will be replaced with pytest.fixtures"""
 

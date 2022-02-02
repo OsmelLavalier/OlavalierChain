@@ -1,4 +1,4 @@
-from src.block_chain.tests.chain import Chain, genesis
+from src.bc.tests.chain import Chain, genesis
 
 """All instances of Chain will be replaced with pytest.fixtures"""
 
