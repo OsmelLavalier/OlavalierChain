@@ -1,5 +1,5 @@
-from client.client import Client
-from transactions.transactions import Transactions
+from src.block_chain.client import Client
+from src.block_chain.transactions import Transactions
 
 
 if __name__ == '__main__':
